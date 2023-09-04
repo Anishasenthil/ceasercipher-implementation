@@ -1,24 +1,26 @@
 #include<iostream>
-#include<string.h>
 using namespace std;
 
 int main()
 {
-    int z=0,i=0,key=0,y=0,j=0,l=0,len=0;
+    int z=0,i=0,key=0,y=0,j=0,l=0,len=0,flag;
     char str1[40];
      char str2[40];
     char arr1[40];
     char k;
     char m;
     int h=0,choice = 0;
-    cout << "Enter the string " << endl;
-    gets(str2);
-    cout<<"Enter the decrypted string "<<endl;
-    gets(str1);
+    cout << "Enter the string =  " ;
+    fflush(stdin);                    // never forget to use fflush(stdin) when inputting a character array [important]
+    gets(str2);                      //never forget to use arr2[j]='\0'  after copying to arr2  [important]
+    cout<<endl;
+    cout<<"Enter key =  ";
+    cin>>key;
+   cout<<endl;
+
+
     while(str2[len++] != '\0') ;
     len--;
-    cout<<"Enter key ";
-    cin>>key;
 
 
     for(i=0;i<len;i++)
@@ -57,10 +59,20 @@ int main()
 
          }
       }
+      arr1[j]='\0';
 
+cout<<"The encrypted string is =  "<<arr1<<endl;
+cout<<endl;
+cout<<"Enter the decrypted string =  ";
+fflush(stdin);
+gets(str1);
+cout<<endl;
+key=0;
 while(key <=15)
 {
+      //cout<<"KEY" <<key<<endl;
       char arr2[40];
+      l=0;
       for(i=0;i<len;i++)
       {
                 h=str1[i];
@@ -105,15 +117,27 @@ while(key <=15)
                 }
 
     }
-    if(strcmp(arr2,str2)==0)
+
+    flag=0;
+    for(i=0;i<len;i++)
     {
-         cout<<"The Key is "<<key;
-        break;
+        if(arr2[i]== str2[i])
+        {
+            flag++;
+        }
+    }
+    if(flag != len)
+    {
+        cout<<"KEY => "<<key<<" decrypted string  => "<<arr2<<endl;
     }
     else
     {
-       continue;
+         cout<<endl;
+         cout<<"Finally ,The Key used for decryption is =  "<<key<<endl<<endl;
+         cout<<"The decrypted string is  =  "<<arr2<<endl;
+        break;
     }
     key++;
 }
+return -1;
 }
